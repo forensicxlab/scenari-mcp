@@ -1,0 +1,27 @@
+.env
+.env.*
+!.env.example
+.venv/
+.tools/
+.cache/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.playwright-mcp/
+
+.DS_Store
+build/
+# Private instance-specific pilots and assets; not part of the public MCP release.
+docs/theme-redesign/
+themes/
+examples/tea-course/
+examples/cappuccino-course/
+scripts/pilot_*.py
+scripts/build_training_skin.py
+scripts/create_kasm_windows_guide.py
+tests/test_training_skin.py
+tests/test_kasm_lab.py
+tests/test_windows_guide.py
