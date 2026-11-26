@@ -1,0 +1,6 @@
+interface:
+  display_name: "Forensics Course Co-design"
+  short_description: "Co-design practical forensic courses with teachers"
+  default_prompt: "Use $scenari-forensics-course-design to co-design a practical digital-forensics activity with me, then prepare the agreed Dokiel content."
+policy:
+  allow_implicit_invocation: true

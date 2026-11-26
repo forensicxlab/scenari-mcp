@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "scenari": {
+      "command": "/absolute/path/to/scenari-mcp/.venv/bin/scenari-mcp",
+      "args": [
+        "--env-file",
+        "/absolute/path/to/scenari-mcp/.env"
+      ]
+    }
+  }
+}

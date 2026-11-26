@@ -1,0 +1,35 @@
+name: scenari-mcp-local
+
+services:
+  scenari:
+    image: scenari/suite-starter:6.5.4@sha256:02536bd5d67a142f3368353345ebe5622a44f30a101a30bb8cd37fea9a6f2677
+    # Upstream 6.5.4 supplies amd64; ARM hosts require Docker emulation.
+    platform: linux/amd64
+    ports:
+      - "127.0.0.1:18080:8080"
+    environment:
+      SC_WEBAPP_NAME: scenari
+      SC_PUBLIC_URL: http://127.0.0.1:18080/scenari
+      SC_LANG: en
+      SC_USER_SUPERADMIN_PASS: ${SC_SUPERADMIN_PASSWORD:?Run scripts/init_local.py first}
+      SC_USER_SYSTEM_PASS: ${SC_SYSTEM_PASSWORD:?Run scripts/init_local.py first}
+      SC_DISPLAY_GEN_PASSWORD: "false"
+      JT_JAVA_OPTS: "-Xms512m -Xmx1024m"
+    volumes:
+      - scenari-data:/var/lib/scenari
+    stop_grace_period: 120s
+    restart: unless-stopped
+    healthcheck:
+      # The upstream ping can succeed even when WAR compilation failed.
+      test:
+        - CMD-SHELL
+        - >-
+          /var/cache/scenari/batch/apps/healthCheck.sh &&
+          python3 -c "import http.client; c=http.client.HTTPConnection('127.0.0.1',8080,timeout=3); c.request('GET','/scenari/'); assert c.getresponse().status in (200,301,302,303)"
+      interval: 15s
+      timeout: 10s
+      start_period: 90s
+      retries: 5
+
+volumes:
+  scenari-data:

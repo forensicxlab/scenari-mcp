@@ -1,0 +1,7 @@
+# Optional workaround for GNU tar/openat2 failures under amd64 emulation.
+services:
+  scenari:
+    image: scenari-mcp-local:6.5.4-tar-compat
+    build:
+      context: .
+      dockerfile: Dockerfile.tar-compat

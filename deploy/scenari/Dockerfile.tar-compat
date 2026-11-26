@@ -1,0 +1,8 @@
+FROM scenari/suite-starter:6.5.4@sha256:02536bd5d67a142f3368353345ebe5622a44f30a101a30bb8cd37fea9a6f2677
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libarchive-tools \
+    && rm -rf /var/lib/apt/lists/*
+COPY tar-compat.sh /usr/local/bin/tar
+RUN chmod 755 /usr/local/bin/tar
+USER jetty

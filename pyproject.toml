@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scenari-mcp"
+version = "0.3.0"
+description = "Native Dokiel authoring and teacher-led digital-forensics course design over MCP"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.12"
+dependencies = [
+  "mcp>=2.3,<3",
+  "scenaripy-api==6.5.3",
+  "scsuitestarter-6-5==5",
+  "requests>=2.32,<3",
+  "python-dotenv>=1.0,<2",
+  "defusedxml>=0.7.1,<1",
+  "pydantic>=2.11,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/forensicxlab/scenari-mcp"
+Repository = "https://github.com/forensicxlab/scenari-mcp"
+Issues = "https://github.com/forensicxlab/scenari-mcp/issues"
+
+[project.scripts]
+scenari-mcp = "scenari_mcp.__main__:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: read-only integration against a configured Scenari instance"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills/scenari-forensics-course-design" = "scenari_mcp/_skills/scenari-forensics-course-design"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src", "/skills", "/scripts/run_plugin.py", "/scripts/smoke_test.py",
+  "/scripts/write_smoke_test.py", "/scripts/init_local.py", "/scripts/build_plugin.py",
+  "/scripts/build_public_release.py", "/tests/conftest.py", "/tests/test_client.py",
+  "/tests/test_config.py", "/tests/test_writing.py", "/tests/test_stdio.py",
+  "/tests/test_packaging.py", "/tests/test_release.py", "/pyproject.toml", "/uv.lock",
+  "/README.md", "/.python-version", "/.env.example", "/plugin.json", "/mcp.json",
+  "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/CONTRIBUTING.md", "/SECURITY.md",
+  "/docs/container-quickstart.md", "/docs/releasing.md", "/deploy/scenari/compose.yaml",
+  "/deploy/scenari/compose.tar-compat.yaml", "/deploy/scenari/Dockerfile.tar-compat",
+  "/deploy/scenari/tar-compat.sh",
+  "/deploy/scenari/.dockerignore",
+  "/.gitignore", "/.github/workflows/ci.yml", "/examples/mcp-client.json",
+]

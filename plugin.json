@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "scenari-course-authoring",
+  "version": "0.3.0",
+  "description": "Teacher-led digital-forensics course co-design with Bloom alignment, practical evidence, Scenari discovery and checked native Dokiel creation and updates.",
+  "keywords": ["scenari", "dokiel", "digital-forensics", "course-design"],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "Scenari Course Co-design",
+        "shortDescription": "Design practical forensic courses with the teacher."
+      }
+    }
+  }
+}
