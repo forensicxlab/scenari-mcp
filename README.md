@@ -350,15 +350,3 @@ References: [Scenari Python API](https://doc.scenari.software/SCENARIbuilder/api
 
 Licensed under [MIT](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md),
 [contributing](CONTRIBUTING.md), and [security reporting](SECURITY.md).
-
-To build a clean repository snapshot and plugin ZIP:
-
-```sh
-.venv/bin/python scripts/build_public_release.py
-.venv/bin/python scripts/build_plugin.py
-```
-
-The source archive is `dist/scenari-mcp-0.3.0-source.zip`. The builder uses an
-explicit file allowlist and excludes local pilots and data. This repository is
-maintained at [forensicxlab/scenari-mcp](https://github.com/forensicxlab/scenari-mcp).
-See [the release guide](docs/releasing.md) for verification and publishing steps.
